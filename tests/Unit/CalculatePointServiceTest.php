@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use App\Services\CalculatePointService;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpKernel\Exception\PreconditionRequiredHttpException;
 
 class CalculatePointServiceTest extends TestCase
 {
@@ -28,6 +29,7 @@ class CalculatePointServiceTest extends TestCase
         $this->assertSame($expected, $result);
     }
 
+    // ↑を1つ1つ書くと↓
 //    /**
 //     * @test
 //     */
@@ -49,6 +51,34 @@ class CalculatePointServiceTest extends TestCase
 //        // $resultが0であることを確認
 //        $this->assertSame(10, $result);
 //    }
+
+//    /**
+//     * @test
+//     */
+//    public function exception_try_catch()
+//    {
+//        try {
+//            throw new \InvalidArgumentException('message', 200);
+//            $this->fail();
+//        } catch (\Throwable $e) {
+//            // 指定した例外がスローされているか
+//            $this->assertInstanceOf(\InvalidArgumentException::class, $e);
+//            // スローされた例外のコードを検証
+//            $this->assertSame(200, $e->getCode());
+//            // スローされた例外のメッセージを検証
+//            $this->assertSame('message', $e->getMessage());
+//        }
+//    }
+
+    /**
+     * @test
+     */
+    public function calcPoint_金額が負の数なら例外をスロー()
+    {
+        $this->expectException(PreconditionRequiredHttpException::class);
+
+        CalculatePointService::calcPoint(-1);
+    }
 
     // ----------------------------
     // データプロバイダ
