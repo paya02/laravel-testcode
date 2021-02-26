@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
  * @property int $customer_id
  * @property int $point
  */
-final class EloquentCustomerPoint extends Model
+class EloquentCustomerPoint extends Model
 {
     protected $table = 'customer_points';
     // 自動設定されるタイムスタンプは不要
