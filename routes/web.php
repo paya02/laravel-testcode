@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return '<h2>TOPページ</h2>';
+});
 Route::prefix('shopping')->group(function () {
     Route::get('/', [App\Http\Controllers\ShoppingController::class, 'index'])->name('index');
 });
